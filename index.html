@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Video Studio Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0b0f19',
+                        cardBg: '#131c2e',
+                        accentBlue: '#3b82f6',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-darkBg text-gray-100 min-h-screen font-sans">
+    <!-- Header -->
+    <header class="flex justify-between items-center px-4 py-3 border-b border-gray-800 bg-darkBg/80 sticky top-0 z-50 backdrop-blur-md">
+        <div class="flex items-center space-x-2">
+            <h1 class="text-lg font-bold bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">AI Video Studio Pro</h1>
+            <span class="bg-blue-600/30 text-blue-400 text-xs px-2 py-0.5 rounded-full font-medium">BETA</span>
+        </div>
+        <nav class="flex items-center space-x-4 text-sm text-gray-300">
+            <a href="#" class="hover:text-white">Tools</a>
+            <a href="#" class="hover:text-white">Pricing</a>
+            <a href="#" class="hover:text-white">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="p-4 max-w-xl mx-auto space-y-4">
+        <!-- Hero Card -->
+        <div class="bg-cardBg border border-gray-800 rounded-2xl p-5 shadow-lg">
+            <h2 class="text-xl font-bold leading-tight mb-2">प्रोफेशनल AI वीडियो – Text, Image, Face Swap, Talking Head</h2>
+            <p class="text-gray-400 text-sm">अपनी मार्केटिंग, reels, ads और explainer वीडियो AI से बनाएं। free.ai और fal.ai की पावरफुल APIs के साथ।</p>
+        </div>
+
+        <!-- Tool 1: Text to Video -->
+        <div class="bg-cardBg border border-gray-800 rounded-2xl p-5 shadow-lg">
+            <h3 class="text-lg font-bold mb-1">Text -> Video</h3>
+            <p class="text-gray-400 text-sm mb-4">प्रॉम्प्ट से वीडियो + नेटिव ऑडियो (ads, reels, stories)।</p>
+            <button class="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-2.5 rounded-xl transition shadow-md">Use Tool</button>
+        </div>
+
+        <!-- Tool 2: Image to Video -->
+        <div class="bg-cardBg border border-gray-800 rounded-2xl p-5 shadow-lg">
+            <h3 class="text-lg font-bold mb-1">Image -> Video</h3>
+            <p class="text-gray-400 text-sm mb-4">किसी भी फोटो को एनिमेट करें (product, character, logo)।</p>
+            <button class="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-2.5 rounded-xl transition shadow-md">Use Tool</button>
+        </div>
+
+        <!-- Tool 3: Video to Video -->
+        <div class="bg-cardBg border border-gray-800 rounded-2xl p-5 shadow-lg">
+            <h3 class="text-lg font-bold mb-1">Video -> Video (Cartoon)</h3>
+            <p class="text-gray-400 text-sm mb-4">वीडियो को कार्टून या सिनेमैटिक स्टाइल में बदलें।</p>
+            <button class="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-2.5 rounded-xl transition shadow-md">Use Tool</button>
+        </div>
+    </main>
+</body>
+</html>
