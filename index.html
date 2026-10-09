@@ -1,67 +1,152 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Video Studio Pro</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        darkBg: '#0b0f19',
-                        cardBg: '#131c2e',
-                        accentBlue: '#3b82f6',
-                    }
-                }
-            }
-        }
-    </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zovixa-ai | Text se video banao</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1b1026;--panel:#2a1a3a;--line:#43305a;--tx:#f5ebdd;--mut:#b9a8c9;--ac:#ffb627;--ac2:#e4417a;--on:#1b1026;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#fbf4ea;--panel:#fff;--line:#e6d8c6;--tx:#2a1a3a;--mut:#6f5d80;--ac:#d9890a;--ac2:#c42e65;--on:#fff}}
+:root[data-theme="light"]{--bg:#fbf4ea;--panel:#fff;--line:#e6d8c6;--tx:#2a1a3a;--mut:#6f5d80;--ac:#d9890a;--ac2:#c42e65;--on:#fff}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 17px/1.6 Hind,system-ui,sans-serif}
+h1,h2,h3,.logo{font-family:'Bricolage Grotesque',Hind,sans-serif;line-height:1.08;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+.logo{font-weight:800;font-size:1.5rem;text-decoration:none}
+.logo b{color:var(--ac)}
+nav .links{display:flex;gap:22px;align-items:center}
+nav .links a{text-decoration:none;color:var(--mut)}
+nav .links a:hover{color:var(--tx)}
+.btn{display:inline-block;border:0;cursor:pointer;font:600 1rem Hind,sans-serif;background:var(--ac);color:var(--on);padding:12px 22px;border-radius:999px;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--tx);border:1.5px solid var(--line)}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:36px 0 70px}
+.hero h1{font-size:clamp(2.4rem,6vw,4.4rem);font-weight:800;letter-spacing:-.02em}
+.hero p.lead{color:var(--mut);max-width:34em;margin:18px 0 0;font-size:1.1rem}
+.studio{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:16px}
+.studio textarea{width:100%;min-height:92px;resize:vertical;background:transparent;color:var(--tx);border:1.5px solid var(--line);border-radius:14px;padding:12px;font:inherit}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;align-items:center}
+.chip{border:1.5px solid var(--line);background:transparent;color:var(--mut);padding:6px 14px;border-radius:999px;cursor:pointer;font:500 .92rem Hind,sans-serif}
+.chip[aria-pressed="true"]{background:var(--tx);color:var(--bg);border-color:var(--tx)}
+.stage{display:grid;place-items:center;background:#0d0716;border-radius:14px;padding:10px;margin-top:6px}
+canvas{max-width:100%;max-height:340px;border-radius:8px;background:#000;transition:aspect-ratio .2s}
+.bar{height:6px;background:var(--line);border-radius:6px;margin-top:10px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ac),var(--ac2))}
+.status{font-size:.9rem;color:var(--mut);margin:8px 2px 0;min-height:1.4em}
+.fld{margin:8px 0;font-size:.92rem;color:var(--mut)}
+.fld input[type=file]{display:block;width:100%;margin-top:4px;color:var(--tx);font:inherit;border:1.5px dashed var(--line);border-radius:12px;padding:9px;background:transparent}
+select,#sc{background:var(--bg);color:var(--tx);border:1.5px solid var(--line);border-radius:12px;padding:8px 10px;font:inherit}
+#sc{width:100%;min-height:56px;resize:vertical;margin-top:8px}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:.88rem;color:var(--mut);border:1.5px solid var(--ac2);border-radius:12px;padding:10px;margin:8px 0}
+.consent input{margin-top:4px;accent-color:var(--ac2)}
+[hidden]{display:none!important}
+section{padding:60px 0;border-top:1px solid var(--line)}
+section h2{font-size:clamp(1.8rem,4vw,2.7rem);font-weight:700;max-width:16em}
+.tools{display:grid;grid-template-columns:repeat(2,1fr);gap:0 40px;margin-top:34px}
+.tools article{padding:20px 0;border-top:1px solid var(--line)}
+.tools h3{font-size:1.35rem;margin-bottom:8px}
+.tools p{color:var(--mut);margin:0}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.plan{border:1.5px solid var(--line);border-radius:20px;padding:24px;background:var(--panel)}
+.plan.pop{border-color:var(--ac);border-width:2px}
+.plan h3{font-size:1.2rem}
+.plan .pr{font:800 2.2rem 'Bricolage Grotesque',sans-serif;margin:10px 0}
+.plan .pr small{font:400 .95rem Hind,sans-serif;color:var(--mut)}
+.plan ul{padding-left:18px;margin:0 0 18px;color:var(--mut)}
+footer{border-top:1px solid var(--line);padding:30px 0 40px;color:var(--mut);font-size:.92rem}
+@media (max-width:820px){
+.hero{grid-template-columns:1fr;gap:28px;padding-bottom:50px}
+.tools,.plans{grid-template-columns:1fr}.tools{gap:0}
+
+nav .links a:not(.btn){display:none}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
 </head>
-<body class="bg-darkBg text-gray-100 min-h-screen font-sans">
-    <!-- Header -->
-    <header class="flex justify-between items-center px-4 py-3 border-b border-gray-800 bg-darkBg/80 sticky top-0 z-50 backdrop-blur-md">
-        <div class="flex items-center space-x-2">
-            <h1 class="text-lg font-bold bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">AI Video Studio Pro</h1>
-            <span class="bg-blue-600/30 text-blue-400 text-xs px-2 py-0.5 rounded-full font-medium">BETA</span>
-        </div>
-        <nav class="flex items-center space-x-4 text-sm text-gray-300">
-            <a href="#" class="hover:text-white">Tools</a>
-            <a href="#" class="hover:text-white">Pricing</a>
-            <a href="#" class="hover:text-white">Contact</a>
-        </nav>
-    </header>
+<body>
+<div class="wrap">
+<nav>
+  <a class="logo" href="#">Zovixa<b>-ai</b></a>
+  <div class="links"><a href="#tools">Tools</a><a href="#pricing">Pricing</a><a class="btn" href="#studio">Free try karo</a></div>
+</nav>
 
-    <!-- Main Content -->
-    <main class="p-4 max-w-xl mx-auto space-y-4">
-        <!-- Hero Card -->
-        <div class="bg-cardBg border border-gray-800 rounded-2xl p-5 shadow-lg">
-            <h2 class="text-xl font-bold leading-tight mb-2">प्रोफेशनल AI वीडियो – Text, Image, Face Swap, Talking Head</h2>
-            <p class="text-gray-400 text-sm">अपनी मार्केटिंग, reels, ads और explainer वीडियो AI से बनाएं। free.ai और fal.ai की पावरफुल APIs के साथ।</p>
-        </div>
+<header class="hero">
+  <div>
+    <h1>Likho. Dekho. Video taiyaar.</h1>
+    <p class="lead">Bas ek line likhiye, Zovixa-ai उसे छोटी सिनेमाई वीडियो में बदल देगा। Reels, ads और गाने के visuals, बिना कैमरा और बिना editor।</p>
+    <div class="row" style="margin-top:24px"><a class="btn" href="#studio">Video banao</a><a class="btn ghost" href="#pricing">Plans dekho</a></div>
+  </div>
 
-        <!-- Tool 1: Text to Video -->
-        <div class="bg-cardBg border border-gray-800 rounded-2xl p-5 shadow-lg">
-            <h3 class="text-lg font-bold mb-1">Text -> Video</h3>
-            <p class="text-gray-400 text-sm mb-4">प्रॉम्प्ट से वीडियो + नेटिव ऑडियो (ads, reels, stories)।</p>
-            <button class="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-2.5 rounded-xl transition shadow-md">Use Tool</button>
-        </div>
+  <div class="studio" id="studio">
+    <div class="row" role="group" aria-label="Mode" id="modes"><button class="chip" data-m="text" aria-pressed="true">Text → Video</button><button class="chip" data-m="image" aria-pressed="false">Photo → Video (jald)</button><button class="chip" data-m="video" aria-pressed="false">Video → Cartoon (jald)</button><button class="chip" data-m="face" aria-pressed="false">Face swap (jald)</button></div>
+    <label for="p" class="sr" style="position:absolute;left:-9999px">Prompt</label>
+    <textarea id="p">गाँव के आँगन में सुनहरी शाम, लालटेन की रोशनी और ढोल की ताल पर नाचता हरा साँप</textarea>
+    <div class="row" role="group" aria-label="Aspect ratio">
+      <button class="chip" data-r="9/16" aria-pressed="true">9:16</button>
+      <button class="chip" data-r="16/9" aria-pressed="false">16:9</button>
+      <button class="chip" data-r="1/1" aria-pressed="false">1:1</button>
+      <span style="flex:1"></span>
+      <button class="btn" id="go">Generate</button>
+    </div>
+    <div class="stage"><video id="vid" controls playsinline loop style="max-width:100%;max-height:340px;border-radius:8px;min-height:200px;background:#000"></video></div>
+    <div class="bar" aria-hidden="true"><i id="pb"></i></div>
+    <p class="status" id="st" role="status">Prompt likhiye aur Generate dabaiye. Video banne mein 1 se 3 minute lag sakte hain.</p>
+  </div>
+</header>
 
-        <!-- Tool 2: Image to Video -->
-        <div class="bg-cardBg border border-gray-800 rounded-2xl p-5 shadow-lg">
-            <h3 class="text-lg font-bold mb-1">Image -> Video</h3>
-            <p class="text-gray-400 text-sm mb-4">किसी भी फोटो को एनिमेट करें (product, character, logo)।</p>
-            <button class="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-2.5 rounded-xl transition shadow-md">Use Tool</button>
-        </div>
+<section id="tools">
+  <h2>Ek jagah, video ke saare kaam</h2>
+  <div class="tools">
+    <article><h3>Text se video</h3><p>Hindi, Bhojpuri या English में scene लिखिए। 5 से 10 सेकंड की क्लिप तैयार।</p></article>
+    <article><h3>Photo se video</h3><p>कोई भी फोटो डालिए, उसमें camera move और जान डालिए, और चाहें तो उससे बुलवाइए भी।</p></article>
+    <article><h3>Video se cartoon</h3><p>असली वीडियो को cartoon, anime या 3D style में बदलिए, उसी आवाज़ और चाल के साथ।</p></article>
+    <article><h3>Face swap, इजाज़त के साथ</h3><p>अपना या इजाज़त वाला चेहरा वीडियो में लगाइए। हर वीडियो पर AI-generated का निशान रहता है।</p></article>
+  </div>
+</section>
 
-        <!-- Tool 3: Video to Video -->
-        <div class="bg-cardBg border border-gray-800 rounded-2xl p-5 shadow-lg">
-            <h3 class="text-lg font-bold mb-1">Video -> Video (Cartoon)</h3>
-            <p class="text-gray-400 text-sm mb-4">वीडियो को कार्टून या सिनेमैटिक स्टाइल में बदलें।</p>
-            <button class="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-2.5 rounded-xl transition shadow-md">Use Tool</button>
-        </div>
-    </main>
+<section id="pricing">
+  <h2>Chhota shuru karo, jab chahe badhao</h2>
+  <div class="plans">
+    <div class="plan"><h3>Free</h3><div class="pr">₹0</div><ul><li>रोज़ 3 वीडियो</li><li>5 सेकंड तक</li><li>Watermark के साथ</li></ul><a class="btn ghost" href="#studio">Free shuru karo</a></div>
+    <div class="plan pop"><h3>Creator</h3><div class="pr">₹499<small> /mahina</small></div><ul><li>100 वीडियो हर महीने</li><li>10 सेकंड, HD</li><li>बिना watermark</li></ul><a class="btn" href="#studio">Creator lo</a></div>
+    <div class="plan"><h3>Studio</h3><div class="pr">₹1,999<small> /mahina</small></div><ul><li>500 वीडियो हर महीने</li><li>Priority queue</li><li>Team के लिए 5 seats</li></ul><a class="btn ghost" href="#studio">Studio lo</a></div>
+  </div>
+</section>
+
+<footer>© 2026 Zovixa-ai. AI se bani har video AI-generated maani jaye.</footer>
+</div>
+
+<script>
+(function(){
+var p=document.getElementById('p'),go=document.getElementById('go'),st=document.getElementById('st'),pb=document.getElementById('pb'),vid=document.getElementById('vid'),ratio='9:16';
+document.querySelectorAll('.chip[data-r]').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.chip[data-r]').forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');ratio=b.dataset.r.replace('/',':')})});
+document.querySelectorAll('.chip[data-m]').forEach(function(b){b.addEventListener('click',function(){if(b.dataset.m!=='text')st.textContent='Yeh mode jald aayega. Abhi Text → Video chal raha hai.'})});
+function wait(ms){return new Promise(function(r){setTimeout(r,ms)})}
+go.addEventListener('click',async function(){
+  var prompt=p.value.trim();
+  if(prompt.length<3){st.textContent='Pehle prompt likhiye, phir Generate dabaiye.';return}
+  go.disabled=true;vid.removeAttribute('src');pb.style.width='4%';st.textContent='Video ban rahi hai...';
+  try{
+    var r=await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt,aspect:ratio})});
+    var d=await r.json();if(!r.ok)throw new Error(d.error||'Dikkat aayi.');
+    var pct=4;
+    for(var i=0;i<120;i++){
+      await wait(3000);
+      var s=await (await fetch('/api/status/'+d.id)).json();
+      if(s.error&&!s.status)throw new Error(s.error);
+      if(s.status==='succeeded'&&s.video){pb.style.width='100%';vid.src=s.video;vid.play().catch(function(){});st.textContent='Taiyaar. Video download karne ke liye usse dabaiye rakhiye ya menu kholiye.';go.disabled=false;return}
+      if(s.status==='failed'||s.status==='canceled')throw new Error(s.error||'Video nahi ban payi.');
+      pct=Math.min(92,pct+3);pb.style.width=pct+'%';
+    }
+    throw new Error('Bahut der lag gayi. Dobara try kijiye.');
+  }catch(e){pb.style.width='0';st.textContent=e.message;go.disabled=false}
+});
+})();
+</script>
 </body>
 </html>
